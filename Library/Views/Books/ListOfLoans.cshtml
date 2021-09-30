@@ -1,0 +1,42 @@
+﻿@model Library.ViewModels.BookLoansViewModel 
+
+@{
+    ViewData["Title"] = "List Of Loans";
+}
+<h1>@Model.Book.Name</h1>
+
+<h4>List Of Loans</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Loans.FirstOrDefault().LoanDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Loans) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanDate)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
